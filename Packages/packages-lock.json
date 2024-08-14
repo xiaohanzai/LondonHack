@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.cysharp.unitask": {
+      "version": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "9057452c86079e4265228480b1439442894d5078"
+    },
     "com.meta.xr.mrutilitykit": {
       "version": "66.0.0",
       "depth": 1,
@@ -38,7 +45,7 @@
     },
     "com.meta.xr.sdk.core": {
       "version": "66.0.0",
-      "depth": 1,
+      "depth": 0,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -64,7 +71,7 @@
     },
     "com.meta.xr.sdk.interaction.ovr": {
       "version": "66.0.0",
-      "depth": 1,
+      "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.meta.xr.sdk.interaction": "66.0.0",
@@ -84,7 +91,7 @@
     },
     "com.meta.xr.sdk.voice": {
       "version": "66.0.0",
-      "depth": 1,
+      "depth": 0,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
