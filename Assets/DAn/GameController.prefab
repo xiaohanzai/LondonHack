@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7773175356796195734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5967993283800131481}
+  - component: {fileID: 249511331064882720}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5967993283800131481
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7773175356796195734}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 80, y: 109.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &249511331064882720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7773175356796195734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 385ac7e980dd14bf4bee647c23f33ad8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questions2D:
+  - {fileID: 11400000, guid: d72e98c73ab9f44bdae19908621e45e6, type: 2}
+  - {fileID: 11400000, guid: 5ead7d83a65a6415c9f36f4e6cf96908, type: 2}
+  questions3D:
+  - {fileID: 11400000, guid: af112dd1972eb45dab378fa68c4d3ce9, type: 2}
+  - {fileID: 11400000, guid: 3dfab40c0cf8a4e3ab7f98f14019bec0, type: 2}
+  questionEventChannel: {fileID: 11400000, guid: 871de9d4ac5e646c9bb6fc7a42918471,
+    type: 2}
