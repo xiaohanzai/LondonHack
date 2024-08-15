@@ -4,15 +4,46 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public enum Type
     {
-        
+        Mole,
+        Ghost,
+        Empty
+    }
+    [SerializeField] private Type type;
+    public Type TargetType => type;
+
+    [SerializeField] private ParticleSystem particleEffect;
+    [SerializeField] private AudioSource dieAudio;
+    [SerializeField] private GameObject visualsParent;
+
+    [Header("Broadcasting on")]
+    [SerializeField] private VoidEventChannelSO questionCompleteEventChannel;
+
+    public void Die()
+    {
+        if (particleEffect != null)
+        {
+            particleEffect.Play();
+        }
+        if (dieAudio != null)
+        {
+            dieAudio.Play();
+        }
+        if (visualsParent != null)
+        {
+            visualsParent.SetActive(false);
+        }
+        StartCoroutine(Co_Die());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator Co_Die()
     {
-        
+        yield return new WaitForSeconds(2f);
+        if (type == Type.Mole || type == Type.Ghost)
+        {
+            questionCompleteEventChannel.RaiseEvent();
+        }
+        Destroy(gameObject);
     }
 }

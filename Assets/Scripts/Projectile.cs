@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour
         Target target = other.GetComponent<Target>();
         if (target != null)
         {
-            Destroy(target.gameObject);
+            target.Die();
             Destroy(gameObject);
         }
     }
