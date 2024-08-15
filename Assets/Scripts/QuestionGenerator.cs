@@ -97,6 +97,11 @@ public class QuestionGenerator : MonoBehaviour
         }
         Target target = Instantiate(targetDict[type], transform);
         target.transform.position = pos * cellSize + gridOrigin;
+        Vector3 direction = gridOrigin - target.transform.position;
+        direction.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        target.transform.rotation = Quaternion.Euler(0, rotation.eulerAngles.y, 0);
+        Debug.Log(rotation.y);
     }
 
     private void DestroyTargets()

@@ -12,6 +12,11 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject nextLevelPage;
     [SerializeField] private GameObject playButton;
     [SerializeField] private GameObject nextLevelButton;
+    [SerializeField] private GameObject instructionPanel;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource level1BGM;
+    [SerializeField] private AudioSource level2BGM;
 
     [Header("Broadcasting on")]
     [SerializeField] private VoidEventChannelSO newLevelEventChannel;
@@ -23,6 +28,7 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         SetUpOnboarding();
+        level1BGM.Play();
     }
 
     private void SetUpOnboarding()
@@ -33,12 +39,15 @@ public class GameController : MonoBehaviour
 
         nextLevelPage.SetActive(false);
         nextLevelButton.SetActive(false);
+
+        instructionPanel.SetActive(false);
     }
 
     public void StartGame()
     {
         onboardingPage.SetActive(false);
         playButton.SetActive(false);
+        instructionPanel.SetActive(true);
         NextQuestion();
     }
 
@@ -50,15 +59,19 @@ public class GameController : MonoBehaviour
 
     private void ShowNextLevelPage()
     {
-        SetUpPanel(nextLevelPage);
+        instructionPanel.SetActive(false);
         nextLevelPage.SetActive(true);
+        SetUpPanel(nextLevelPage);
         nextLevelButton.SetActive(true);
+        level1BGM.Stop();
+        level2BGM.Play();
     }
 
     private void HideNextLevelPage()
     {
         nextLevelPage.SetActive(false);
         nextLevelButton.SetActive(false);
+        instructionPanel.SetActive(true);
     }
 
     private void SetUpPanel(GameObject panel)
@@ -68,7 +81,7 @@ public class GameController : MonoBehaviour
         Vector3 direction = Camera.main.transform.forward;
         direction.y = 0;
         Quaternion rotation = Quaternion.LookRotation(direction);
-        panel.transform.rotation = Quaternion.Euler(0, rotation.y, 0);
+        panel.transform.rotation = Quaternion.Euler(0, rotation.eulerAngles.y, 0);
     }
 
     public void NextQuestion()

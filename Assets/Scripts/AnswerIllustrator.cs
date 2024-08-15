@@ -19,6 +19,7 @@ public class AnswerIllustrator : MonoBehaviour
 
     [SerializeField] private GameObject illustratorPrefab;
     [SerializeField] private Projectile projectilePrefab;
+    [SerializeField] private GameObject cannonObject;
 
     [Header("Listening to")]
     [SerializeField] private Vector3sEventChannelSO answersSetEventChannel;
@@ -99,6 +100,8 @@ public class AnswerIllustrator : MonoBehaviour
         while (moveInX)
         {
             illustrator.transform.position = Vector3.MoveTowards(illustrator.transform.position, new Vector3(target.x, illustrator.transform.position.y, illustrator.transform.position.z), speed * Time.deltaTime);
+            illustrator.transform.LookAt(illustrator.transform.position * 2);
+            cannonObject.transform.LookAt(illustrator.transform.position * 2);
             lineRenderer.SetPosition(1, illustrator.transform.position);
             if (Mathf.Approximately(illustrator.transform.position.x, target.x))
             {
@@ -112,6 +115,8 @@ public class AnswerIllustrator : MonoBehaviour
         while (moveInZ)
         {
             illustrator.transform.position = Vector3.MoveTowards(illustrator.transform.position, new Vector3(illustrator.transform.position.x, illustrator.transform.position.y, target.z), speed * Time.deltaTime);
+            illustrator.transform.LookAt(illustrator.transform.position * 2);
+            cannonObject.transform.LookAt(illustrator.transform.position * 2);
             lineRenderer.SetPosition(1, illustrator.transform.position);
             if (Mathf.Approximately(illustrator.transform.position.z, target.z))
             {
@@ -126,6 +131,8 @@ public class AnswerIllustrator : MonoBehaviour
         {
             illustrator.transform.position = Vector3.MoveTowards(illustrator.transform.position, new Vector3(illustrator.transform.position.x, target.y, illustrator.transform.position.z), speed * Time.deltaTime);
             lineRenderer.SetPosition(1, illustrator.transform.position);
+            illustrator.transform.LookAt(illustrator.transform.position * 2);
+            cannonObject.transform.LookAt(illustrator.transform.position * 2);
             if (Mathf.Approximately(illustrator.transform.position.y, target.y))
             {
                 moveInY = false;
