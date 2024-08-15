@@ -25,49 +25,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae5a46bda3295124c99b0e6537ac7252, type: 3}
   m_Name: wit
   m_EditorClassIdentifier: 
-  _clientAccessToken: UGGE4N5KQDTHWOIREMFWI7UJWU3WEGH6
+  _clientAccessToken: TFWSNSWLATXEMZFVTP3P6P7WRTA4KUB5
   _appInfo:
-    name: wake_word
-    id: 1192240428463741
+    name: image_capture_kit
+    id: 1554676952096459
     lang: en
     isPrivate: 1
-    createdAt: 2024-07-21T08:57:39-0700
+    createdAt: 2024-08-15T02:26:34-0700
     trainingStatus: 1
-    lastTrainDuration: 705
-    lastTrainedAt: 2024-07-23T14:28:42-0700
-    nextTrainAt: 2024-07-23T14:16:57-0700
-    intents:
-    - id: 862748821933733
-      name: wake_word
-      entities:
-      - name: wake_word:wake_word
-        id: 1205598463952201
-    entities:
-    - name: wake_word
-      id: 504723442033952
-      lookups:
-      - free-text
-      - keywords
-      roles:
-      - name: wake_word
-        id: 1205598463952201
-      keywords:
-      - keyword: ey west
-        synonyms:
-        - ey west
-      - keyword: hey quest
-        synonyms:
-        - ey quest
-        - hey quest
-      - keyword: hey west
-        synonyms:
-        - hey west
-      - keyword: hey, quest
-        synonyms:
-        - hey, quest
-      - keyword: hi quest
-        synonyms:
-        - hi quest
+    lastTrainDuration: 0
+    lastTrainedAt: 1969-12-31T16:00:00-0800
+    nextTrainAt: 1969-12-31T16:00:00-0800
+    intents: []
+    entities: []
     traits: []
     versionTags: []
     voices:
