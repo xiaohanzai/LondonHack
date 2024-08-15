@@ -5,6 +5,8 @@ using UnityEngine;
 public class GridGenerator : MonoBehaviour
 {
     [SerializeField] private LineRenderer linePrefab;
+    [SerializeField] private Axis axisPrefab;
+    [SerializeField] private GameObject gridPointPrefab;
 
     [Header("Listening to")]
     [SerializeField] private GlobalParametersEventChannelSO globalParametersEventChannel;
@@ -77,6 +79,33 @@ public class GridGenerator : MonoBehaviour
                 Material material = line.material;
                 material.color = new Color(material.color.r, material.color.g, material.color.b, 1f / ((Mathf.Abs(i) + 1) * (Mathf.Abs(i) + 1) + (Mathf.Abs(j) + 1) * (Mathf.Abs(j) + 1)));
             }
+        }
+
+        for (int i = xMin; i < xMax + 1; i++)
+        {
+            for (int j = yMin; j < yMax + 1; j++)
+            {
+                for (int k = zMin; k < zMax + 1; k++)
+                {
+                    GameObject gridPoint = Instantiate(gridPointPrefab, transform);
+                    gridPoint.transform.position = gridOrigin + new Vector3(i * cellSize, j * cellSize, k * cellSize);
+                }
+            }
+        }
+
+        Axis xAxis = Instantiate(axisPrefab, transform);
+        xAxis.SetUpAxis(gridOrigin, cellSize, xMin, xMax, Axis.Direction.X);
+        xAxis.CreateAxisAndLabels();
+
+        Axis zAxis = Instantiate(axisPrefab, transform);
+        zAxis.SetUpAxis(gridOrigin, cellSize, zMin, zMax, Axis.Direction.Z);
+        zAxis.CreateAxisAndLabels();
+
+        if (yMax - yMin > 0)
+        {
+            Axis yAxis = Instantiate(axisPrefab, transform);
+            yAxis.SetUpAxis(gridOrigin, cellSize, yMin, yMax, Axis.Direction.Y);
+            yAxis.CreateAxisAndLabels();
         }
     }
 }
