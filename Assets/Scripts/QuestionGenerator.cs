@@ -6,13 +6,11 @@ using UnityEngine.UI;
 
 public class QuestionGenerator : MonoBehaviour
 {
-    [SerializeField] private Target targetPrefab;
-    private Target target;
+    [SerializeField] private Target[] targetPrefabs;
+    private Dictionary<Target.Type, Target> targetDict;
 
     private Vector3 gridOrigin;
     private float cellSize;
-
-    private Vector3 targetPos;
 
     [Header("Listening to")]
     [SerializeField] private GlobalParametersEventChannelSO globalParametersEventChannel;
@@ -25,6 +23,12 @@ public class QuestionGenerator : MonoBehaviour
     {
         globalParametersEventChannel.OnEvtRaised += SetParameters;
         questionEventChannel.OnEvtRaised += ReceiveQuestion;
+
+        targetDict = new Dictionary<Target.Type, Target>();
+        foreach (var item in targetPrefabs)
+        {
+            targetDict.Add(item.TargetType, item);
+        }
     }
 
     private void OnDestroy()
@@ -41,6 +45,7 @@ public class QuestionGenerator : MonoBehaviour
 
     private void ReceiveQuestion(QuestionSO question)
     {
+        DestroyTargets();
         GenerateAnswers(question.xMinQ, question.xMaxQ, question.yMinQ, question.yMaxQ, question.zMinQ, question.zMaxQ);
     }
 
@@ -50,18 +55,55 @@ public class QuestionGenerator : MonoBehaviour
         int y = Random.Range(yMin, yMax);
         int z = Random.Range(zMin, zMax);
 
-        targetPos = new Vector3(x, y, z);
-        InstantiateTarget();
-        answersSetEventChannel.RaiseEvent(targetPos, GenerateRandomWrongAnswer(xMin, xMax, yMin, yMax, zMin, zMax), GenerateRandomWrongAnswer(xMin, xMax, yMin, yMax, zMin, zMax));
+        bool is2D = yMax == 0;
+        Vector3 targetPos = new Vector3(x, y, z);
+        InstantiateTarget(targetPos, is2D, true);
+        Vector3 wrongAnswer1 = GenerateRandomWrongAnswer(xMin, xMax, yMin, yMax, zMin, zMax, x, y, z);
+        InstantiateTarget(wrongAnswer1, is2D, false);
+        Vector3 wrongAnswer2 = GenerateRandomWrongAnswer(xMin, xMax, yMin, yMax, zMin, zMax, x, y, z);
+        InstantiateTarget(wrongAnswer2, is2D, false);
+
+        answersSetEventChannel.RaiseEvent(targetPos, wrongAnswer1, wrongAnswer2);
     }
 
-    private Vector3 GenerateRandomWrongAnswer(int xMin, int xMax, int yMin, int yMax, int zMin, int zMax)
+    private Vector3 GenerateRandomWrongAnswer(int xMin, int xMax, int yMin, int yMax, int zMin, int zMax, int x, int y, int z)
     {
-        return new Vector3(Random.Range(xMin, xMax), Random.Range(yMin, yMax), Random.Range(zMin, zMax));
+        int newX = Random.Range(xMin, xMax);
+        int newY = Random.Range(yMin, yMax);
+        int newZ = Random.Range(zMin, zMax);
+        while (newX == x && newY == y && newZ == z)
+        {
+            newX = Random.Range(xMin, xMax);
+            newY = Random.Range(yMin, yMax);
+            newZ = Random.Range(zMin, zMax);
+        }
+        return new Vector3(newX, newY, newZ);
     }
 
-    private void InstantiateTarget()
+    private void InstantiateTarget(Vector3 pos, bool is2D, bool isCorrectAnswer)
     {
-        target = Instantiate(targetPrefab, targetPos * cellSize + gridOrigin, Quaternion.identity);
+        Target.Type type;
+        if (is2D && isCorrectAnswer)
+        {
+            type = Target.Type.Mole;
+        }
+        else if (!is2D && isCorrectAnswer)
+        {
+            type = Target.Type.Ghost;
+        }
+        else
+        {
+            type = Target.Type.Empty;
+        }
+        Target target = Instantiate(targetDict[type], transform);
+        target.transform.position = pos * cellSize + gridOrigin;
+    }
+
+    private void DestroyTargets()
+    {
+        for (int i = transform.childCount - 1; i >= 0; i--)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
     }
 }
