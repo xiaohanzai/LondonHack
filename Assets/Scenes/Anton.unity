@@ -8283,7 +8283,7 @@ GameObject:
   - component: {fileID: 2106231938}
   - component: {fileID: 2106231937}
   m_Layer: 0
-  m_Name: Victory
+  m_Name: Victory Particle Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9139,7 +9139,7 @@ ParticleSystem:
           m_RotationOrder: 4
     arc:
       value: 360
-      mode: 0
+      mode: 1
       spread: 0
       speed:
         serializedVersion: 2
