@@ -30,6 +30,7 @@ public class PalmMenuController : MonoBehaviour
         newLevelEventChannel.OnEvtRaised += HideQuestionButton;
         newLevelEventChannel.OnEvtRaised += HideAnswerButtons;
         questionCompleteEventChannel.OnEvtRaised += ShowQuestionButton;
+        questionCompleteEventChannel.OnEvtRaised += HideAnswerButtons;
         questionStartEventChannel.OnEvtRaised += HideQuestionButton;
         questionStartEventChannel.OnEvtRaised += ShowAnswerButtons;
         questionStartEventChannel.OnEvtRaised += ShuffleButtonPositions;
@@ -40,6 +41,7 @@ public class PalmMenuController : MonoBehaviour
         newLevelEventChannel.OnEvtRaised -= HideQuestionButton;
         newLevelEventChannel.OnEvtRaised -= HideAnswerButtons;
         questionCompleteEventChannel.OnEvtRaised -= ShowQuestionButton;
+        questionCompleteEventChannel.OnEvtRaised -= HideAnswerButtons;
         questionStartEventChannel.OnEvtRaised -= HideQuestionButton;
         questionStartEventChannel.OnEvtRaised -= ShowAnswerButtons;
         questionStartEventChannel.OnEvtRaised -= ShuffleButtonPositions;

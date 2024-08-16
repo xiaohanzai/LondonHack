@@ -5,7 +5,7 @@ using TMPro;
 
 public class AnswerIllustrator : MonoBehaviour
 {
-    [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private LineRenderer lineRendererPrefab;
 
     [SerializeField] private TextMeshProUGUI text0;
     [SerializeField] private TextMeshProUGUI text1;
@@ -17,8 +17,10 @@ public class AnswerIllustrator : MonoBehaviour
 
     [SerializeField] private float speed = 1f;
 
+    [SerializeField] private Transform gridObjectTransform;
     [SerializeField] private GameObject illustratorPrefab;
     [SerializeField] private Projectile projectilePrefab;
+    [SerializeField] private GameObject cannonObject;
 
     [Header("Listening to")]
     [SerializeField] private Vector3sEventChannelSO answersSetEventChannel;
@@ -29,7 +31,6 @@ public class AnswerIllustrator : MonoBehaviour
 
     private void Start()
     {
-        lineRenderer.enabled = false;
         globalParametersEventChannel.OnEvtRaised += SetParameters;
         answersSetEventChannel.OnEvtRaised += SetAnswers;
     }
@@ -87,8 +88,9 @@ public class AnswerIllustrator : MonoBehaviour
 
     IEnumerator Co_MoveIllustratorAndShoot(Vector3 target)
     {
-        GameObject illustrator = Instantiate(illustratorPrefab, gridOrigin, Quaternion.identity);
-        lineRenderer.enabled = true;
+        GameObject illustrator = Instantiate(illustratorPrefab, gridObjectTransform);
+        illustrator.transform.position = gridOrigin;
+        LineRenderer lineRenderer = Instantiate(lineRendererPrefab, gridObjectTransform);
         lineRenderer.SetPosition(0, gridOrigin);
 
         bool moveInX = true;
@@ -99,6 +101,8 @@ public class AnswerIllustrator : MonoBehaviour
         while (moveInX)
         {
             illustrator.transform.position = Vector3.MoveTowards(illustrator.transform.position, new Vector3(target.x, illustrator.transform.position.y, illustrator.transform.position.z), speed * Time.deltaTime);
+            illustrator.transform.LookAt(illustrator.transform.position * 2);
+            cannonObject.transform.LookAt(illustrator.transform.position * 2);
             lineRenderer.SetPosition(1, illustrator.transform.position);
             if (Mathf.Approximately(illustrator.transform.position.x, target.x))
             {
@@ -112,6 +116,8 @@ public class AnswerIllustrator : MonoBehaviour
         while (moveInZ)
         {
             illustrator.transform.position = Vector3.MoveTowards(illustrator.transform.position, new Vector3(illustrator.transform.position.x, illustrator.transform.position.y, target.z), speed * Time.deltaTime);
+            illustrator.transform.LookAt(illustrator.transform.position * 2);
+            cannonObject.transform.LookAt(illustrator.transform.position * 2);
             lineRenderer.SetPosition(1, illustrator.transform.position);
             if (Mathf.Approximately(illustrator.transform.position.z, target.z))
             {
@@ -126,6 +132,8 @@ public class AnswerIllustrator : MonoBehaviour
         {
             illustrator.transform.position = Vector3.MoveTowards(illustrator.transform.position, new Vector3(illustrator.transform.position.x, target.y, illustrator.transform.position.z), speed * Time.deltaTime);
             lineRenderer.SetPosition(1, illustrator.transform.position);
+            illustrator.transform.LookAt(illustrator.transform.position * 2);
+            cannonObject.transform.LookAt(illustrator.transform.position * 2);
             if (Mathf.Approximately(illustrator.transform.position.y, target.y))
             {
                 moveInY = false;
@@ -136,8 +144,13 @@ public class AnswerIllustrator : MonoBehaviour
         Projectile projectile = Instantiate(projectilePrefab, gridOrigin, Quaternion.identity);
         projectile.Shoot(target);
 
-        yield return new WaitForSeconds(1f);
+        float waitTime = 2f;
+        if (target == answer0)
+        {
+            waitTime = 7f;
+        }
+        yield return new WaitForSeconds(waitTime);
         Destroy(illustrator);
-        lineRenderer.enabled = false;
+        Destroy(lineRenderer);
     }
 }

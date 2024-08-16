@@ -61,6 +61,10 @@ public class QuestionGenerator : MonoBehaviour
         Vector3 wrongAnswer1 = GenerateRandomWrongAnswer(xMin, xMax, yMin, yMax, zMin, zMax, x, y, z);
         InstantiateTarget(wrongAnswer1, is2D, false);
         Vector3 wrongAnswer2 = GenerateRandomWrongAnswer(xMin, xMax, yMin, yMax, zMin, zMax, x, y, z);
+        while (Mathf.Approximately(wrongAnswer2.x / wrongAnswer1.x, wrongAnswer2.z / wrongAnswer1.z))
+        {
+            wrongAnswer2 = GenerateRandomWrongAnswer(xMin, xMax, yMin, yMax, zMin, zMax, x, y, z);
+        }
         InstantiateTarget(wrongAnswer2, is2D, false);
 
         answersSetEventChannel.RaiseEvent(targetPos, wrongAnswer1, wrongAnswer2);
@@ -71,7 +75,7 @@ public class QuestionGenerator : MonoBehaviour
         int newX = Random.Range(xMin, xMax);
         int newY = Random.Range(yMin, yMax);
         int newZ = Random.Range(zMin, zMax);
-        while (newX == x && newY == y && newZ == z)
+        while (newX == x && newY == y && newZ == z || Mathf.Approximately(newX / x, newZ / z))
         {
             newX = Random.Range(xMin, xMax);
             newY = Random.Range(yMin, yMax);
@@ -97,6 +101,10 @@ public class QuestionGenerator : MonoBehaviour
         }
         Target target = Instantiate(targetDict[type], transform);
         target.transform.position = pos * cellSize + gridOrigin;
+        Vector3 direction = gridOrigin - target.transform.position;
+        direction.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        target.transform.rotation = Quaternion.Euler(0, rotation.eulerAngles.y, 0);
     }
 
     private void DestroyTargets()

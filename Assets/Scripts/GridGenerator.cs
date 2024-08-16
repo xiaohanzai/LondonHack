@@ -52,8 +52,8 @@ public class GridGenerator : MonoBehaviour
                 LineRenderer line = Instantiate(linePrefab, transform);
                 line.SetPosition(0, gridOrigin + new Vector3(i * cellSize, j * cellSize, zMin * cellSize));
                 line.SetPosition(1, gridOrigin + new Vector3(i * cellSize, j * cellSize, zMax * cellSize));
-                Material material = line.material;
-                material.color = new Color(material.color.r, material.color.g, material.color.b, 1f / ((Mathf.Abs(i) + 1) * (Mathf.Abs(i) + 1) + (Mathf.Abs(j) + 1) * (Mathf.Abs(j) + 1)));
+                //Material material = line.material;
+                //material.color = new Color(material.color.r, material.color.g, material.color.b, 1f / ((Mathf.Abs(i) + 1) * (Mathf.Abs(i) + 1) + (Mathf.Abs(j) + 1) * (Mathf.Abs(j) + 1)));
             }
         }
 
@@ -64,8 +64,8 @@ public class GridGenerator : MonoBehaviour
                 LineRenderer line = Instantiate(linePrefab, transform);
                 line.SetPosition(0, gridOrigin + new Vector3(xMin * cellSize, i * cellSize, j * cellSize));
                 line.SetPosition(1, gridOrigin + new Vector3(xMax * cellSize, i * cellSize, j * cellSize));
-                Material material = line.material;
-                material.color = new Color(material.color.r, material.color.g, material.color.b, 1f / ((Mathf.Abs(i) + 1) * (Mathf.Abs(i) + 1) + (Mathf.Abs(j) + 1) * (Mathf.Abs(j) + 1)));
+                //Material material = line.material;
+                //material.color = new Color(material.color.r, material.color.g, material.color.b, 1f / ((Mathf.Abs(i) + 1) * (Mathf.Abs(i) + 1) + (Mathf.Abs(j) + 1) * (Mathf.Abs(j) + 1)));
             }
         }
 
@@ -76,8 +76,8 @@ public class GridGenerator : MonoBehaviour
                 LineRenderer line = Instantiate(linePrefab, transform);
                 line.SetPosition(0, gridOrigin + new Vector3(i * cellSize, yMin * cellSize, j * cellSize));
                 line.SetPosition(1, gridOrigin + new Vector3(i * cellSize, yMax * cellSize, j * cellSize));
-                Material material = line.material;
-                material.color = new Color(material.color.r, material.color.g, material.color.b, 1f / ((Mathf.Abs(i) + 1) * (Mathf.Abs(i) + 1) + (Mathf.Abs(j) + 1) * (Mathf.Abs(j) + 1)));
+                //Material material = line.material;
+                //material.color = new Color(material.color.r, material.color.g, material.color.b, 1f / ((Mathf.Abs(i) + 1) * (Mathf.Abs(i) + 1) + (Mathf.Abs(j) + 1) * (Mathf.Abs(j) + 1)));
             }
         }
 

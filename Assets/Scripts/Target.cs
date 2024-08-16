@@ -44,6 +44,9 @@ public class Target : MonoBehaviour
         {
             questionCompleteEventChannel.RaiseEvent();
         }
-        Destroy(gameObject);
+        if (type != Type.Empty)
+        {
+            Destroy(gameObject);
+        }
     }
 }

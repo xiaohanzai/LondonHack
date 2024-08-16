@@ -23,7 +23,7 @@ public class AxisLabel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FollowCamera();
+        //FollowCamera();
     }
 
     private void FollowCamera()
@@ -33,7 +33,7 @@ public class AxisLabel : MonoBehaviour
         if (direction.sqrMagnitude > 0.0f)
         {
             Quaternion rotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Euler(0, rotation.y, 0);
+            transform.rotation = Quaternion.Euler(0, rotation.eulerAngles.y, 0);
         }
     }
 }
