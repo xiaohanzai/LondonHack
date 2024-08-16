@@ -17339,52 +17339,6 @@ Transform:
   - {fileID: 772802166}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &904147021
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 904147023}
-  - component: {fileID: 904147022}
-  m_Layer: 0
-  m_Name: WallPrefabSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &904147022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 904147021}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0822689342fb24d7bbb22ad7b1a2b2a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _label: 4
-  _prefab: {fileID: 1338636542848519033, guid: 625337987843244e6a1deb0b32aabf15, type: 3}
---- !u!4 &904147023
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 904147021}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.038300008, y: 1.0599048, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &907175465
 GameObject:
   m_ObjectHideFlags: 0
@@ -19885,14 +19839,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb5f27449e7e4e10bf6fa0d8a66c1e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineRendererPrefab: {fileID: 2131640127037101525, guid: 15774c0cf57fc4c1395cec80df91e926,
-    type: 3}
   text0: {fileID: 1473284814}
   text1: {fileID: 820883165}
   text2: {fileID: 1089392139}
   speed: 0.5
   gridObjectTransform: {fileID: 3980103496815401057}
-  illustratorPrefab: {fileID: 6814369193950711701, guid: be9812efe6a2744bf942fd131920da4f,
+  illustratorPrefab: {fileID: 2048833762263175648, guid: be9812efe6a2744bf942fd131920da4f,
     type: 3}
   projectilePrefab: {fileID: -6455355190530209502, guid: fed704390e95049fd95774a88335c5c3,
     type: 3}
@@ -39154,7 +39106,6 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 1991163098}
-  - {fileID: 904147023}
   - {fileID: 3980103496815401057}
   - {fileID: 628880549}
   - {fileID: 1049274335}
