@@ -87,6 +87,7 @@ public class GameController : MonoBehaviour
         instructionPanel2.SetActive(false);
         if (endingPage != null)
         {
+            SetUpPanel(endingPage);
             endingPage.SetActive(true);
         }
     }
