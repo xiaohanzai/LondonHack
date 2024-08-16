@@ -61,6 +61,10 @@ public class QuestionGenerator : MonoBehaviour
         Vector3 wrongAnswer1 = GenerateRandomWrongAnswer(xMin, xMax, yMin, yMax, zMin, zMax, x, y, z);
         InstantiateTarget(wrongAnswer1, is2D, false);
         Vector3 wrongAnswer2 = GenerateRandomWrongAnswer(xMin, xMax, yMin, yMax, zMin, zMax, x, y, z);
+        while (Mathf.Approximately(wrongAnswer2.x / wrongAnswer1.x, wrongAnswer2.z / wrongAnswer1.z))
+        {
+            wrongAnswer2 = GenerateRandomWrongAnswer(xMin, xMax, yMin, yMax, zMin, zMax, x, y, z);
+        }
         InstantiateTarget(wrongAnswer2, is2D, false);
 
         answersSetEventChannel.RaiseEvent(targetPos, wrongAnswer1, wrongAnswer2);
