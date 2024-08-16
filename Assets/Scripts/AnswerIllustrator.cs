@@ -5,7 +5,7 @@ using TMPro;
 
 public class AnswerIllustrator : MonoBehaviour
 {
-    [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private LineRenderer lineRendererPrefab;
 
     [SerializeField] private TextMeshProUGUI text0;
     [SerializeField] private TextMeshProUGUI text1;
@@ -31,7 +31,6 @@ public class AnswerIllustrator : MonoBehaviour
 
     private void Start()
     {
-        lineRenderer.enabled = false;
         globalParametersEventChannel.OnEvtRaised += SetParameters;
         answersSetEventChannel.OnEvtRaised += SetAnswers;
     }
@@ -91,7 +90,7 @@ public class AnswerIllustrator : MonoBehaviour
     {
         GameObject illustrator = Instantiate(illustratorPrefab, gridObjectTransform);
         illustrator.transform.position = gridOrigin;
-        lineRenderer.enabled = true;
+        LineRenderer lineRenderer = Instantiate(lineRendererPrefab, gridObjectTransform);
         lineRenderer.SetPosition(0, gridOrigin);
 
         bool moveInX = true;
@@ -152,6 +151,6 @@ public class AnswerIllustrator : MonoBehaviour
         }
         yield return new WaitForSeconds(waitTime);
         Destroy(illustrator);
-        lineRenderer.enabled = false;
+        Destroy(lineRenderer);
     }
 }

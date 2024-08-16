@@ -71,7 +71,7 @@ public class QuestionGenerator : MonoBehaviour
         int newX = Random.Range(xMin, xMax);
         int newY = Random.Range(yMin, yMax);
         int newZ = Random.Range(zMin, zMax);
-        while (newX == x && newY == y && newZ == z)
+        while (newX == x && newY == y && newZ == z || Mathf.Approximately(newX / x, newZ / z))
         {
             newX = Random.Range(xMin, xMax);
             newY = Random.Range(yMin, yMax);
