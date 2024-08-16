@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class FaceOrigin : MonoBehaviour
 {
-    [SerializeField] private Transform originTransform;
+    //[SerializeField] private Transform originTransform;
 
     // Start is called before the first frame update
     void Start()
     {
+        Transform originTransform = Camera.main.transform;
         Vector3 direction = originTransform.position - transform.position;
         direction.y = 0;
         if (direction.sqrMagnitude > 0.0f)

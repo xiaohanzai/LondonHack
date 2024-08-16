@@ -11,6 +11,14 @@ public class GlobalParametersController : MonoBehaviour
 
     private bool hasBroadcasted;
 
+    void Start()
+    {
+        Ray ray = new Ray(Camera.main.transform.position, Vector3.down);
+        if (Physics.Raycast(ray, out RaycastHit hit)) // TODO: this might hit a chair
+        {
+            transform.position = hit.point;
+        }
+    }
     void Update()
     {
         if (!hasBroadcasted)

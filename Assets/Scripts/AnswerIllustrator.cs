@@ -5,8 +5,6 @@ using TMPro;
 
 public class AnswerIllustrator : MonoBehaviour
 {
-    [SerializeField] private LineRenderer lineRendererPrefab;
-
     [SerializeField] private TextMeshProUGUI text0;
     [SerializeField] private TextMeshProUGUI text1;
     [SerializeField] private TextMeshProUGUI text2;
@@ -18,7 +16,7 @@ public class AnswerIllustrator : MonoBehaviour
     [SerializeField] private float speed = 1f;
 
     [SerializeField] private Transform gridObjectTransform;
-    [SerializeField] private GameObject illustratorPrefab;
+    [SerializeField] private Illustrator illustratorPrefab;
     [SerializeField] private Projectile projectilePrefab;
     [SerializeField] private GameObject cannonObject;
 
@@ -88,10 +86,19 @@ public class AnswerIllustrator : MonoBehaviour
 
     IEnumerator Co_MoveIllustratorAndShoot(Vector3 target)
     {
-        GameObject illustrator = Instantiate(illustratorPrefab, gridObjectTransform);
+        Illustrator illustrator = Instantiate(illustratorPrefab, gridObjectTransform);
         illustrator.transform.position = gridOrigin;
-        LineRenderer lineRenderer = Instantiate(lineRendererPrefab, gridObjectTransform);
+        LineRenderer lineRenderer = illustrator.GetLineRenderer();
         lineRenderer.SetPosition(0, gridOrigin);
+
+        if (target == answer0)
+        {
+            illustrator.ApplyRightAnswerMat();
+        }
+        else
+        {
+            illustrator.ApplyWrongAnswerMat();
+        }
 
         bool moveInX = true;
         bool moveInY = false;
@@ -150,7 +157,6 @@ public class AnswerIllustrator : MonoBehaviour
             waitTime = 7f;
         }
         yield return new WaitForSeconds(waitTime);
-        Destroy(illustrator);
-        Destroy(lineRenderer);
+        Destroy(illustrator.gameObject);
     }
 }
