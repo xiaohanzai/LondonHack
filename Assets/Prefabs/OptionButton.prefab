@@ -508,7 +508,7 @@ RectTransform:
   m_GameObject: {fileID: 6211779325733462169}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.000625, y: 0.000625, z: 0.000625}
+  m_LocalScale: {x: 0.0008, y: 0.0008, z: 0.0009}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6692993725777193851}
@@ -519,7 +519,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 400}
+  m_SizeDelta: {x: 1000, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &810697447545234769
 Canvas:
@@ -618,7 +618,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00012207031, y: 4.700001}
+  m_AnchoredPosition: {x: 0.00012207031, y: 4.699951}
   m_SizeDelta: {x: 0, y: -9.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3924282424592424175
@@ -649,7 +649,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: (0, 0, 0)
+  m_text: (-1, -1, -1)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cc16d4e13ecb04e43a51c41f1d502ee7, type: 2}
   m_sharedMaterial: {fileID: 1509578613788127324, guid: cc16d4e13ecb04e43a51c41f1d502ee7,
@@ -768,7 +768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockId: 5838e892-31a4-4f65-a415-dc108aefa14c
-  instanceId: 0086a712-906a-44b0-b4a5-96ca6fb2b427
+  instanceId: 70b21001-2f69-47c1-82bb-1d8d3276a19b
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: 
@@ -1067,5 +1067,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e08ab46e8fb05dc46b34e54466dc11e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _position: {x: 0, y: 0.1, z: 0}
-  _size: {x: 0.6, y: 0.4, z: 0.5}
+  _position: {x: 0, y: 0, z: 0}
+  _size: {x: 1, y: 0.5, z: 0.5}

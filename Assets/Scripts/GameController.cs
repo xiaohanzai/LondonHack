@@ -10,9 +10,11 @@ public class GameController : MonoBehaviour
     [Header("UI")]
     [SerializeField] private GameObject onboardingPage;
     [SerializeField] private GameObject nextLevelPage;
+    [SerializeField] private GameObject endingPage;
     [SerializeField] private GameObject playButton;
     [SerializeField] private GameObject nextLevelButton;
-    [SerializeField] private GameObject instructionPanel;
+    [SerializeField] private GameObject instructionPanel1;
+    [SerializeField] private GameObject instructionPanel2;
 
     [Header("Audio")]
     [SerializeField] private AudioSource level1BGM;
@@ -40,14 +42,20 @@ public class GameController : MonoBehaviour
         nextLevelPage.SetActive(false);
         nextLevelButton.SetActive(false);
 
-        instructionPanel.SetActive(false);
+        if (endingPage != null)
+        {
+            endingPage.SetActive(false);
+        }
+
+        instructionPanel1.SetActive(false);
+        instructionPanel2.SetActive(false);
     }
 
     public void StartGame()
     {
         onboardingPage.SetActive(false);
         playButton.SetActive(false);
-        instructionPanel.SetActive(true);
+        instructionPanel1.SetActive(true);
         NextQuestion();
     }
 
@@ -59,7 +67,7 @@ public class GameController : MonoBehaviour
 
     private void ShowNextLevelPage()
     {
-        instructionPanel.SetActive(false);
+        instructionPanel1.SetActive(false);
         nextLevelPage.SetActive(true);
         SetUpPanel(nextLevelPage);
         nextLevelButton.SetActive(true);
@@ -71,7 +79,16 @@ public class GameController : MonoBehaviour
     {
         nextLevelPage.SetActive(false);
         nextLevelButton.SetActive(false);
-        instructionPanel.SetActive(true);
+        instructionPanel2.SetActive(true);
+    }
+
+    private void ShowEndingPage()
+    {
+        instructionPanel2.SetActive(false);
+        if (endingPage != null)
+        {
+            endingPage.SetActive(true);
+        }
     }
 
     private void SetUpPanel(GameObject panel)
@@ -89,20 +106,34 @@ public class GameController : MonoBehaviour
         if (ind < questions2D.Length)
         {
             questionEventChannel.RaiseEvent(questions2D[ind]);
-            questionStartEventChannel.RaiseEvent();
+            Invoke("StartQuestion", 2f);
             ind++;
         }
         else if (ind == questions2D.Length)
         {
             ShowNextLevelPage();
-            newLevelEventChannel.RaiseEvent();
+            Invoke("StartNewLevel", 2f);
             ind++;
         }
         else if (ind < questions3D.Length + questions2D.Length + 1)
         {
             questionEventChannel.RaiseEvent(questions3D[ind - questions2D.Length - 1]);
-            questionStartEventChannel.RaiseEvent();
+            Invoke("StartQuestion", 2f);
             ind++;
         }
+        else if (ind == questions3D.Length + questions2D.Length + 1)
+        {
+            ShowEndingPage();
+        }
+    }
+
+    private void StartQuestion()
+    {
+        questionStartEventChannel.RaiseEvent();
+    }
+
+    private void StartNewLevel()
+    {
+        newLevelEventChannel.RaiseEvent();
     }
 }

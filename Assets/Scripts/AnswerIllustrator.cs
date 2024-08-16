@@ -17,6 +17,7 @@ public class AnswerIllustrator : MonoBehaviour
 
     [SerializeField] private float speed = 1f;
 
+    [SerializeField] private Transform gridObjectTransform;
     [SerializeField] private GameObject illustratorPrefab;
     [SerializeField] private Projectile projectilePrefab;
     [SerializeField] private GameObject cannonObject;
@@ -88,7 +89,8 @@ public class AnswerIllustrator : MonoBehaviour
 
     IEnumerator Co_MoveIllustratorAndShoot(Vector3 target)
     {
-        GameObject illustrator = Instantiate(illustratorPrefab, gridOrigin, Quaternion.identity);
+        GameObject illustrator = Instantiate(illustratorPrefab, gridObjectTransform);
+        illustrator.transform.position = gridOrigin;
         lineRenderer.enabled = true;
         lineRenderer.SetPosition(0, gridOrigin);
 
@@ -143,7 +145,12 @@ public class AnswerIllustrator : MonoBehaviour
         Projectile projectile = Instantiate(projectilePrefab, gridOrigin, Quaternion.identity);
         projectile.Shoot(target);
 
-        yield return new WaitForSeconds(1f);
+        float waitTime = 2f;
+        if (target == answer0)
+        {
+            waitTime = 7f;
+        }
+        yield return new WaitForSeconds(waitTime);
         Destroy(illustrator);
         lineRenderer.enabled = false;
     }

@@ -101,7 +101,6 @@ public class QuestionGenerator : MonoBehaviour
         direction.y = 0;
         Quaternion rotation = Quaternion.LookRotation(direction);
         target.transform.rotation = Quaternion.Euler(0, rotation.eulerAngles.y, 0);
-        Debug.Log(rotation.y);
     }
 
     private void DestroyTargets()

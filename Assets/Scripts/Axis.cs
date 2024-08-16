@@ -55,7 +55,8 @@ public class Axis : MonoBehaviour
         {
             cube.transform.localScale = new Vector3(width, width, s);
         }
-        cube.transform.position = gridOrigin + directionDict[direction] * cellSize * (vMax - vMin) / 2f;
+        cube.transform.position = gridOrigin + directionDict[direction] * cellSize * (vMax + vMin) / 2f;
+        Debug.Log(direction + " " + cube.transform.position.ToString());
 
         for (int i = vMin; i < vMax + 1; i++)
         {
@@ -74,12 +75,12 @@ public class Axis : MonoBehaviour
         if (direction == Direction.Y)
         {
             arrow.transform.rotation *= Quaternion.Euler(0, 90, 90);
-            axisLabelText.text = "Y";
+            axisLabelText.text = "Z";
         }
         else if (direction == Direction.Z)
         {
             arrow.transform.rotation *= Quaternion.Euler(0, -90, 0);
-            axisLabelText.text = "Z";
+            axisLabelText.text = "Y";
         }
     }
 }
