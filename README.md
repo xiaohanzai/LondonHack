@@ -10,6 +10,10 @@ Full trailer:
 
 https://www.youtube.com/watch?v=GSWF8FQpXJY
 
+Download apk here (use in oculus quest 3 only):
+
+https://drive.google.com/file/d/1b1OiWNeOg6h41ALXlIjucUfR_timC8-s/view?usp=sharing
+
 Logo and environment:
 
 <img width="1524" alt="Screenshot 2024-09-30 at 2 30 40 PM" src="https://github.com/user-attachments/assets/1bbf2b54-4dd9-4f86-a81e-bd39b0cbcf6a">
